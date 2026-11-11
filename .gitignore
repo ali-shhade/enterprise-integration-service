@@ -1,0 +1,40 @@
+# Maven build output
+/target/
+
+# Logs
+/logs/
+*.log
+*.log.*
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# IDE files
+.idea/
+.vscode/
+.DS_Store
+
+# Compiled Java files
+*.class
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+# Generated processing output
+/data/processed/
+/data/invalid/
+/data/rejected/
+/data/error/
+
+/data/day4/processed/
+/data/day4/rejected/
+/data/day4/api-rejected/
+/data/day4/api-unavailable/
+
+/data/day5/sftp-received/

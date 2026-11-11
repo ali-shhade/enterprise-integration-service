@@ -1,0 +1,41 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    env:
+      DB_URL: jdbc:mysql://localhost:3307/integration_db
+      DB_USERNAME: integration_app
+      DB_PASSWORD: ci-only-password
+      ORDER_API_TOKEN: ci-only-token
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Make Maven Wrapper executable
+        run: chmod +x mvnw
+
+      - name: Build and run tests
+        run: ./mvnw --batch-mode --no-transfer-progress clean verify
